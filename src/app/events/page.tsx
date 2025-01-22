@@ -33,12 +33,12 @@ export default function EventsPage() {
   };
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">
           Available Events
         </h1>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           {Object.entries(categoryIcons).map(([category, Icon]) => (
             <button
               key={category}
@@ -56,7 +56,7 @@ export default function EventsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {mockEvents
           .filter(
             (event) =>

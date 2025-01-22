@@ -9,8 +9,8 @@ interface EventCardProps {
 
 export default function EventCard({ event, onBookClick }: EventCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 overflow-hidden group">
-      <div className="relative h-48 overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden group">
+      <div className="relative h-40 sm:h-48 md:h-52 overflow-hidden">
         <Image
           src={event.imageUrl}
           alt={event.title}
@@ -22,36 +22,36 @@ export default function EventCard({ event, onBookClick }: EventCardProps) {
           £{event.price}
         </span>
       </div>
-      <div className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">
+      <div className="p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">
           {event.title}
         </h3>
-        <p className="text-gray-600 text-sm mb-6 line-clamp-2">
+        <p className="text-gray-600 text-sm mb-4 sm:mb-6 line-clamp-2">
           {event.description}
         </p>
-        <div className="flex flex-col gap-3 mb-6">
-          <div className="flex items-center gap-3 text-sm text-gray-600">
-            <div className="p-2 bg-primary/5 rounded-lg">
+        <div className="flex flex-col gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <div className="flex items-center gap-2 sm:gap-3 text-sm text-gray-600">
+            <div className="p-1.5 sm:p-2 bg-primary/5 rounded-lg">
               <Calendar className="w-4 h-4 text-primary" />
             </div>
             <span>{event.date}</span>
           </div>
-          <div className="flex items-center gap-3 text-sm text-gray-600">
-            <div className="p-2 bg-secondary/5 rounded-lg">
+          <div className="flex items-center gap-2 sm:gap-3 text-sm text-gray-600">
+            <div className="p-1.5 sm:p-2 bg-secondary/5 rounded-lg">
               <Clock className="w-4 h-4 text-secondary" />
             </div>
             <span>{event.time}</span>
           </div>
-          <div className="flex items-center gap-3 text-sm text-gray-600">
-            <div className="p-2 bg-primary/5 rounded-lg">
+          <div className="flex items-center gap-2 sm:gap-3 text-sm text-gray-600">
+            <div className="p-1.5 sm:p-2 bg-primary/5 rounded-lg">
               <MapPin className="w-4 h-4 text-primary" />
             </div>
-            <span>{event.location}</span>
+            <span className="line-clamp-1">{event.location}</span>
           </div>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm">
-            <div className="p-2 bg-secondary/5 rounded-lg">
+            <div className="p-1.5 sm:p-2 bg-secondary/5 rounded-lg">
               <Users className="w-4 h-4 text-secondary" />
             </div>
             <span className="font-medium text-gray-900">
@@ -60,7 +60,7 @@ export default function EventCard({ event, onBookClick }: EventCardProps) {
           </div>
           <button
             onClick={() => onBookClick(event)}
-            className="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors font-medium"
+            className="px-4 sm:px-6 py-2 sm:py-2.5 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors font-medium text-sm sm:text-base"
           >
             Book Now
           </button>
