@@ -1,3 +1,4 @@
+import { Bell } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -15,12 +16,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="text-gray-600 hover:text-primary">
-            Notifications
+          <button className="p-2 rounded-full hover:bg-gray-100 transition-colors relative">
+            <Bell className="w-5 h-5 text-gray-600" />
+
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-white text-xs rounded-full flex items-center justify-center">
+              1
+            </span>
           </button>
-          <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
-            <span className="text-6xl bg-primary text-white">A</span>
-          </div>
         </div>
       </div>
     </nav>
