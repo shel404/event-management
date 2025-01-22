@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import MainLayout from "@/components/layout/MainLayout";
+import { BookingProvider } from "@/contexts/BookingContext";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={geist.className}>
-        <MainLayout>{children}</MainLayout>
+        <BookingProvider>
+          <MainLayout>{children}</MainLayout>
+        </BookingProvider>
       </body>
     </html>
   );

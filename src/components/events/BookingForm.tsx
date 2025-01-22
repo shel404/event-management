@@ -59,7 +59,7 @@ export default function BookingForm({ event, onSubmit }: BookingFormProps) {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 space-y-6">
+      <form onSubmit={handleSubmit} className="p-6 space-y-6 text-gray-800">
         <div className="grid grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
