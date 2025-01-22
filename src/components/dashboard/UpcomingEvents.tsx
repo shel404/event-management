@@ -10,12 +10,12 @@ export default function UpcomingEvents() {
     .slice(0, 3);
 
   return (
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg font-semibold text-gray-900">Upcoming Events</h2>
         <Link
           href="/events"
-          className="text-sm text-primary hover:text-primary/90"
+          className="text-sm text-primary hover:text-primary-hover"
         >
           View all
         </Link>
@@ -24,7 +24,7 @@ export default function UpcomingEvents() {
         {upcomingEvents.map((event) => (
           <div
             key={event.id}
-            className="flex items-center gap-4 p-4 rounded-lg bg-gray-50"
+            className="flex items-center gap-4 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
           >
             <div className="relative w-12 h-12 rounded-lg overflow-hidden">
               <Image

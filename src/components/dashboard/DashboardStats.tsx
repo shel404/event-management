@@ -13,19 +13,19 @@ export default function DashboardStats() {
       label: "Active Bookings",
       value: activeBookings.length,
       icon: Calendar,
-      color: "bg-blue-500",
+      color: "bg-primary",
     },
     {
       label: "Available Events",
       value: mockEvents.length,
       icon: Clock,
-      color: "bg-green-500",
+      color: "bg-secondary",
     },
     {
       label: "Total Students",
       value: activeBookings.length,
       icon: Users,
-      color: "bg-purple-500",
+      color: "bg-primary",
     },
     {
       label: "Booking Rate",
@@ -33,7 +33,7 @@ export default function DashboardStats() {
         (activeBookings.length / mockEvents.length) * 100
       )}%`,
       icon: TrendingUp,
-      color: "bg-orange-500",
+      color: "bg-secondary",
     },
   ];
 
@@ -42,13 +42,15 @@ export default function DashboardStats() {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="bg-white p-6 rounded-lg border border-gray-200"
+          className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
         >
           <div className="flex items-center gap-4">
             <div
               className={`p-3 rounded-lg ${stat.color} bg-opacity-10 flex items-center justify-center`}
             >
-              <stat.icon className={`w-6 h-6 text-gray-900`} />
+              <stat.icon
+                className={`w-6 h-6 ${stat.color.replace("bg-", "text-")}`}
+              />
             </div>
             <div>
               <p className="text-sm text-gray-600">{stat.label}</p>

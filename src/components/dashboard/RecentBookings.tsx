@@ -8,12 +8,12 @@ export default function RecentBookings() {
   const { bookings } = useBookings();
 
   return (
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg font-semibold text-gray-900">Recent Bookings</h2>
         <Link
           href="/bookings"
-          className="text-sm text-primary hover:text-primary/90"
+          className="text-sm text-primary hover:text-primary-hover"
         >
           View all
         </Link>
@@ -22,7 +22,7 @@ export default function RecentBookings() {
         {bookings.slice(0, 3).map((booking) => (
           <div
             key={booking.id}
-            className="flex items-center gap-4 p-4 rounded-lg bg-gray-50"
+            className="flex items-center gap-4 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
           >
             <div className="relative w-12 h-12 rounded-lg overflow-hidden">
               <Image
@@ -41,9 +41,9 @@ export default function RecentBookings() {
               </p>
             </div>
             <span
-              className={`px-2 py-1 rounded-full text-xs ${
+              className={`px-3 py-1 rounded-full text-xs font-medium ${
                 booking.status === "confirmed"
-                  ? "bg-green-100 text-green-800"
+                  ? "bg-primary/10 text-primary"
                   : "bg-red-100 text-red-800"
               }`}
             >

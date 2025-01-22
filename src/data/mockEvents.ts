@@ -17,7 +17,8 @@ export const mockEvents: Event[] = [
   {
     id: "2",
     title: "Junior Football League",
-    description: "Weekly soccer training and matches for kids aged 8-12",
+    description:
+      "Weekly soccer training and matches for kids aged 8-12. Join us for a fun and competitive experience!",
     date: "2025-06-01",
     time: "2:00 PM",
     location: "City Sports Complex",
