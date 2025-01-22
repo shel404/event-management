@@ -1,146 +1,145 @@
-import { Event } from "@/types/event";
-import { Calendar, Clock, MapPin } from "lucide-react";
-import Image from "next/image";
+"use client";
 
-interface BookingFormProps {
-  event: Event;
-  onSubmit: (formData: BookingFormData) => void;
-}
+import { Event } from "@/types/event";
+import { useState } from "react";
+import Image from "next/image";
 
 export interface BookingFormData {
   studentName: string;
   studentAge: string;
   parentName: string;
-  parentEmail: string;
   parentPhone: string;
-  specialRequirements?: string;
+}
+
+interface BookingFormProps {
+  event: Event;
+  onSubmit: (data: BookingFormData) => void;
 }
 
 export default function BookingForm({ event, onSubmit }: BookingFormProps) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState<BookingFormData>({
+    studentName: "",
+    studentAge: "",
+    parentName: "",
+    parentPhone: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    onSubmit({
-      studentName: formData.get("studentName") as string,
-      studentAge: formData.get("studentAge") as string,
-      parentName: formData.get("parentName") as string,
-      parentEmail: formData.get("parentEmail") as string,
-      parentPhone: formData.get("parentPhone") as string,
-      specialRequirements: formData.get("specialRequirements") as string,
-    });
+    onSubmit(formData);
   };
 
   return (
-    <div>
-      <div className="relative h-64 rounded-t-lg overflow-hidden">
-        <Image
-          src={event.imageUrl}
-          alt={event.title}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-0 left-0 p-6 text-white">
-          <h2 className="text-2xl font-bold mb-2">{event.title}</h2>
-          <div className="flex gap-4 text-sm">
-            <div className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
-              <span>{event.date}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              <span>{event.time}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <MapPin className="w-4 h-4" />
-              <span>{event.location}</span>
-            </div>
-          </div>
+    <div className="p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
+        <div className="relative w-full sm:w-32 h-24 sm:h-32 rounded-lg overflow-hidden flex-shrink-0">
+          <Image
+            src={event.imageUrl}
+            alt={event.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, 128px"
+          />
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            {event.title}
+          </h2>
+          <p className="text-sm text-gray-600 mb-1">
+            {event.date} at {event.time}
+          </p>
+          <p className="text-sm text-gray-600">{event.location}</p>
+          <p className="text-primary font-medium mt-2">£{event.price}</p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 space-y-6 text-gray-800">
-        <div className="grid grid-cols-2 gap-6">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="studentName"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Student Name
             </label>
             <input
               type="text"
-              name="studentName"
+              id="studentName"
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+              value={formData.studentName}
+              onChange={(e) =>
+                setFormData({ ...formData, studentName: e.target.value })
+              }
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="studentAge"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Student Age
             </label>
             <input
               type="number"
-              name="studentAge"
+              id="studentAge"
               required
-              min="5"
+              min="3"
               max="18"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+              value={formData.studentAge}
+              onChange={(e) =>
+                setFormData({ ...formData, studentAge: e.target.value })
+              }
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Parent/Guardian Name
+            <label
+              htmlFor="parentName"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Parent Name
             </label>
             <input
               type="text"
-              name="parentName"
+              id="parentName"
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+              value={formData.parentName}
+              onChange={(e) =>
+                setFormData({ ...formData, parentName: e.target.value })
+              }
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Parent Email
-            </label>
-            <input
-              type="email"
-              name="parentEmail"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="parentPhone"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Parent Phone
             </label>
             <input
               type="tel"
-              name="parentPhone"
+              id="parentPhone"
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+              value={formData.parentPhone}
+              onChange={(e) =>
+                setFormData({ ...formData, parentPhone: e.target.value })
+              }
             />
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Special Requirements
-          </label>
-          <textarea
-            name="specialRequirements"
-            rows={3}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-          />
-        </div>
-
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-end gap-3 mt-6">
           <button
             type="submit"
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors w-full sm:w-auto"
           >
-            Confirm Booking
+            Complete Booking
           </button>
         </div>
       </form>
