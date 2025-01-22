@@ -5,6 +5,7 @@ import EventCard from "@/components/events/EventCard";
 import { Event } from "@/types/event";
 import { Palette, Dumbbell, GraduationCap, Sparkles } from "lucide-react";
 import Modal from "@/components/ui/Modal";
+import Toast from "@/components/ui/Toast";
 import BookingForm, { BookingFormData } from "@/components/events/BookingForm";
 import { useBookings } from "@/contexts/BookingContext";
 import { mockEvents } from "@/data/mockEvents";
@@ -19,6 +20,7 @@ const categoryIcons = {
 export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [showToast, setShowToast] = useState(false);
   const { addBooking } = useBookings();
 
   const handleBooking = (event: Event) => {
@@ -29,6 +31,7 @@ export default function EventsPage() {
     if (selectedEvent) {
       addBooking(selectedEvent, formData);
       setSelectedEvent(null);
+      setShowToast(true);
     }
   };
 
@@ -76,6 +79,12 @@ export default function EventsPage() {
           <BookingForm event={selectedEvent} onSubmit={handleBookingSubmit} />
         )}
       </Modal>
+
+      <Toast
+        message="Booking completed successfully!"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 }
