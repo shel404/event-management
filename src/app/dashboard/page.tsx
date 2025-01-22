@@ -6,7 +6,9 @@ import UpcomingEvents from "@/components/dashboard/UpcomingEvents";
 export default function DashboardPage() {
   return (
     <div className="max-w-full">
-      <h1 className="text-2xl font-bold text-gray-900 mb-8">Dashboard</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-8 text-center md:text-left">
+        Dashboard
+      </h1>
 
       <div className="space-y-8 w-full">
         <Suspense fallback={<div>Loading stats...</div>}>

@@ -18,16 +18,18 @@ export default function MainLayout({ children }: MainLayoutProps) {
   }, [isMobile]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen max-w-full bg-gray-50 relative">
       <Navbar />
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       <div
-        className={`pt-16 ${
-          isCollapsed ? "ml-0" : "ml-0 md:ml-64"
+        className={`fixed top-16 right-0 bottom-0 overflow-y-auto ${
+          isCollapsed ? "left-0" : "left-0 md:left-64"
         } transition-all duration-300`}
       >
-        <div className="max-w-[100vw] overflow-x-hidden">
-          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full">{children}</div>
+        <div className="min-h-full w-full">
+          <div className="p-4 sm:p-6 lg:p-8">
+            <div className="max-w-full overflow-hidden">{children}</div>
+          </div>
         </div>
       </div>
     </div>

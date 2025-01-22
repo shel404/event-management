@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Calendar, BookOpen, Menu } from "lucide-react";
+import {
+  LayoutDashboard,
+  Calendar,
+  BookOpen,
+  Menu,
+  ChevronLeft,
+} from "lucide-react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface SidebarProps {
@@ -23,11 +29,16 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
     <>
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className={`fixed top-20 ${
-          isCollapsed ? "left-4" : "left-64"
-        } z-50 p-2 bg-white rounded-lg shadow-md hover:bg-gray-50 md:hidden transition-all duration-300`}
+        className={`fixed z-50 p-2 bg-white rounded-lg shadow-md hover:bg-gray-50 transition-all duration-300 ${
+          isCollapsed ? "top-20 left-4" : "top-20 left-56"
+        }`}
+        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
-        <Menu className="w-5 h-5 text-gray-600" />
+        {isCollapsed ? (
+          <Menu className="w-5 h-5 text-gray-600" />
+        ) : (
+          <ChevronLeft className="w-5 h-5 text-gray-600" />
+        )}
       </button>
 
       <aside

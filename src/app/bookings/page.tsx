@@ -23,7 +23,9 @@ export default function BookingsPage() {
 
   return (
     <div className="py-8 w-full">
-      <h1 className="text-2xl font-bold text-gray-900 mb-8">My Bookings</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-8 text-center md:text-left">
+        My Bookings
+      </h1>
 
       <div className="grid gap-6 w-full">
         {bookings.map((booking) => (

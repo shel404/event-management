@@ -33,17 +33,17 @@ export default function EventsPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="w-full">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold text-gray-900 mb-4 text-center md:text-left">
           Available Events
         </h1>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-4">
           {Object.entries(categoryIcons).map(([category, Icon]) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm flex items-center gap-2 ${
+              className={`px-3 sm:px-4 py-2 rounded-full text-sm flex items-center gap-2 ${
                 selectedCategory === category
                   ? "bg-primary text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -56,7 +56,7 @@ export default function EventsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
         {mockEvents
           .filter(
             (event) =>
